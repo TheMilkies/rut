@@ -12,9 +12,9 @@ cd rut
 
 Now configure it as you'd like, edit the `hardcoded_users.conf` file:
 ```c
-//name		skip password
+//{username, skip_password?}
 {"johndoe", true}
-{"kenth", 	false}
+{"kenth", false}
 ```
 
 Now let's compile it, you must be logged in as root to do so.

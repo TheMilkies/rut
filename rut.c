@@ -13,7 +13,7 @@
 
 struct auth_user {
 	char username[MAX_USERNAME_LENGTH];
-	bool no_password; //this is negative because it's inited to 0
+	bool skip_password; 
 } rutters[] = {
 #include "hardcoded_users.conf"
 };
@@ -80,7 +80,7 @@ bool auth() {
 		if(!rutter->username[0]) break; //if at the end of the array
 		//compare the name
 		if(strncmp(rutter->username, user_data->pw_name, MAX_USERNAME_LENGTH) == 0) {
-			if(rutter->no_password) return true; //nopass
+			if(rutter->skip_password) return true; //nopass
 			//the user was found, let's ask for password
 			return ask_password(uid, &user_data);
 		}
