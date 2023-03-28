@@ -12,7 +12,7 @@
 #define MAX_USERNAME_LENGTH 32
 
 struct auth_user {
-	char username[MAX_USERNAME_LENGTH];
+	const char *username;
 	bool skip_password; 
 } rutters[] = {
 #include "hardcoded_users.conf"
@@ -25,26 +25,6 @@ void error(const char* error) {
 
 	fprintf(stderr, "\n");
 	exit(1);
-}
-
-const char* load_rutters_file_to_string() {
-	char * buffer = 0;
-	long length;
-	FILE * f = fopen("/etc/rutters", "r");
-
-	if (!f)
-		error("can not open rutters file.");
-
-	//read whole file to buffer, stolen from Nils Pipenbrinck from stackoverflow.
-	fseek(f, 0, SEEK_END);
-	length = ftell(f);
-	fseek(f, 0, SEEK_SET);
-	buffer = malloc(length);
-	if(buffer)
-		fread (buffer, 1, length, f);
-	fclose(f);
-
-	return buffer;
 }
 
 bool ask_password(__uid_t user_id, struct passwd* user_data) {
@@ -82,7 +62,7 @@ bool auth() {
 		if(strncmp(rutter->username, user_data->pw_name, MAX_USERNAME_LENGTH) == 0) {
 			if(rutter->skip_password) return true; //nopass
 			//the user was found, let's ask for password
-			return ask_password(uid, &user_data);
+			return ask_password(uid, user_data);
 		}
 	}
 
