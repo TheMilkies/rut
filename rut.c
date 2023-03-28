@@ -54,8 +54,7 @@ bool auth() {
 
 	size_t user_count = sizeof(rutters) / sizeof(struct auth_user);
 
-	for (size_t i = 0; i < user_count; i++)
-	{
+	for (size_t i = 0; i < user_count; ++i) {
 		struct auth_user* rutter = &rutters[i];
 		if(!rutter->username[0]) break; //if at the end of the array
 		//compare the name
@@ -70,8 +69,7 @@ bool auth() {
 	return false;
 }
 
-int main(int argc, char const *argv[], const char const* envp[])
-{
+int main(int argc, char const *argv[], const char const* envp[]) {
 	if(argc < 2)
 		error("runs command as root\n"
 			  "no program given");

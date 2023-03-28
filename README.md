@@ -23,7 +23,7 @@ cd rut
 Now configure it as you'd like, edit the `users.conf` file:
 ```c
 //{username, skip_password?}
-{"johndoe", true}
+{"johndoe", true},
 {"kenth", false}
 ```
 
