@@ -4,13 +4,14 @@ Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](h
 Since it's hardcoded, you'll need to recompile it every time you edit the configuration file.
 
 ## Advantages and disadvantages
-
-### Over sudo
-+ A LOT smaller, 10% of the filesize.
-+ Harder to exploit.
-- Doesn't have a configuration file.
-+ Doesn't have a configuration 400 line file.
-
+Here are some advantages and disadvantages it has over other programs:
+- ✅ A LOT smaller than sudo, 10% of the filesize.
+- ✅ A LOT faster since it doesn't parse any file.
+- ✅ Doesn't have any dependencies (like yacc (ahem doas)).
+- ✅ Harder to exploit.
+- ❌ Doesn't have a configuration file.
+- ✅ Doesn't have a 120 line basic configuration file.
+- ❌ Requires recompilation on config update.
 
 ## Configuring and installing
 First begin by cloning this repo:
