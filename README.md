@@ -1,5 +1,5 @@
 # Rut
-Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 90 lines of code) which makes it a lot faster and more secure than sudo. 
+Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 89 lines of C code) which makes it a lot faster and more secure than sudo.
 
 Since it's hardcoded, you'll need to recompile it every time you edit the configuration file.
 
@@ -28,9 +28,10 @@ Now configure it as you'd like, edit the `users.conf` file:
 ```
 
 Now let's compile it, you must be logged in as root to do so.
-
-1. Type `su` and enter your root password
+1. Type `su` and enter your root password.
 2. Run `./install.sh`
+
+Now you have it in `/usr/bin`, Have fun!
 
 ## Credits
 - Yogurt: Original developer.

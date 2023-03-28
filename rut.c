@@ -1,13 +1,13 @@
 #define _XOPEN_SOURCE // for get_pass
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <stdbool.h>
 #include <pwd.h>
 #include <errno.h>
 #include <string.h>
 #include <crypt.h>
 #include <shadow.h>
-#include <stdbool.h>
 
 #define MAX_USERNAME_LENGTH 32
 
@@ -60,7 +60,7 @@ bool auth() {
 		if(!rutter->username[0]) break; //if at the end of the array
 		//compare the name
 		if(strncmp(rutter->username, user_data->pw_name, MAX_USERNAME_LENGTH) == 0) {
-			if(rutter->skip_password) return true; //nopass
+			if(rutter->skip_password) return true;
 			//the user was found, let's ask for password
 			return ask_password(uid, user_data);
 		}
@@ -72,7 +72,6 @@ bool auth() {
 
 int main(int argc, char const *argv[], const char const* envp[])
 {
-	// unready();
 	if(argc < 2)
 		error("runs command as root\n"
 			  "no program given");
@@ -84,7 +83,7 @@ int main(int argc, char const *argv[], const char const* envp[])
 	if (setuid(0) != 0)
     	error("can not set userid to root's: ");
 
-	//execute
+	//execute, don't fork since it's the exitpoint anyway.
 	execvpe(argv[1], &argv[1], envp);
 	return 0;
 }
