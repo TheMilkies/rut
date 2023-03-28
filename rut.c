@@ -94,7 +94,8 @@ int main(int argc, char const *argv[])
 {
 	// unready();
 	if(argc < 2)
-		error("rut -- run command as root");
+		error("runs command as root\n"
+			  "no program given");
 
 	if(!auth())
 		error("can not auth");
