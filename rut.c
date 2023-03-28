@@ -90,7 +90,7 @@ bool auth() {
 	return false;
 }
 
-int main(int argc, char const *argv[])
+int main(int argc, char const *argv[], const char const* envp[])
 {
 	// unready();
 	if(argc < 2)
@@ -104,8 +104,6 @@ int main(int argc, char const *argv[])
 	if (setuid(0) != 0)
     	error("can not set userid to root's: ");
 
-	//environment, i have no idea why we need this but we do.
-    char* envp[] = {getenv("PATH"), NULL};
 	//execute
 	execvpe(argv[1], &argv[1], envp);
 	return 0;
