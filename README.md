@@ -1,7 +1,16 @@
 # Rut
-Rut is a simple one-file sudo-like utility. 
+Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 90 lines of code) which makes it a lot faster and more secure than sudo. 
 
-Originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils)
+Since it's hardcoded, you'll need to recompile it every time you edit the configuration file.
+
+## Advantages and disadvantages
+
+### Over sudo
++ A LOT smaller, 10% of the filesize.
++ Harder to exploit.
+- Doesn't have a configuration file.
++ Doesn't have a configuration 400 line file.
+
 
 ## Configuring and installing
 First begin by cloning this repo:
@@ -10,7 +19,7 @@ git clone https://github.com/TheMilkies/rut.git
 cd rut
 ```
 
-Now configure it as you'd like, edit the `hardcoded_users.conf` file:
+Now configure it as you'd like, edit the `users.conf` file:
 ```c
 //{username, skip_password?}
 {"johndoe", true}

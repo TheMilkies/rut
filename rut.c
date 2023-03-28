@@ -15,7 +15,7 @@ struct auth_user {
 	const char *username;
 	bool skip_password; 
 } rutters[] = {
-#include "hardcoded_users.conf"
+#include "users.conf"
 };
 
 void error(const char* error) {
