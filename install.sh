@@ -42,7 +42,6 @@ case $arg in
 		fi
 		exit
 	;;
-	'');;
 	*)
 		error "invalid arg '$1'"
 	;;
