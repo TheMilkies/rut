@@ -1,5 +1,5 @@
 # Rut
-Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 89 lines of C code) which makes it a lot faster and more secure than sudo.
+Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 84 lines of C code) which makes it a lot faster and more secure than sudo.
 
 Since it's hardcoded, you'll need to recompile it every time you edit the configuration file.
 
@@ -20,7 +20,18 @@ git clone https://github.com/TheMilkies/rut.git
 cd rut
 ```
 
-Now configure it as you'd like, edit the `users.conf` file:
+### Single user config
+If only one user can have root permissions (typical for a modern desktop), this might be the ideal configuration. you must be logged in as root to do so.
+1. Type `su` and enter your root password.
+2. type `./install single ` and put your username after
+- if you'd like to skip the password, add `nopass` after the username.
+
+The command should look something like this:
+
+	`./install.sh aquarius nopass`
+
+### Multi user config
+Configure it as you'd like, edit the `users.conf` file:
 ```c
 //{username, skip_password?}
 {"johndoe", true},
@@ -31,7 +42,15 @@ Now let's compile it, you must be logged in as root to do so.
 1. Type `su` and enter your root password.
 2. Run `./install.sh`
 
-Now you have it in `/usr/bin`, Have fun!
+## Testing it
+**If you're still in the root shell, type `exit` to get back to your user.**
+
+Run the following command as shown: 
+```
+rut whoami
+```
+
+If it outputted "`root`", congratulations! you have rut installed!
 
 ## Credits
 - Yogurt: Original developer.
