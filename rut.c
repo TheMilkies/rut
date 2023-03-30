@@ -23,7 +23,7 @@ void error(const char* error) {
 	if(errno)
 		fprintf(stderr, ": %s", strerror(errno));
 
-	fprintf(stderr, "\n");
+	fputc('\n', stderr);
 	exit(1);
 }
 
@@ -53,10 +53,8 @@ bool auth() {
 		error("can not get data");
 
 	size_t user_count = sizeof(rutters) / sizeof(struct auth_user);
-
 	for (size_t i = 0; i < user_count; ++i) {
 		struct auth_user* rutter = &rutters[i];
-		if(!rutter->username[0]) break; //if at the end of the array
 		//compare the name
 		if(strncmp(rutter->username, user_data->pw_name, MAX_USERNAME_LENGTH) == 0) {
 			if(rutter->skip_password) return true;
@@ -69,17 +67,17 @@ bool auth() {
 	return false;
 }
 
-int main(int argc, char const *argv[], const char const* envp[]) {
+int main(int argc, char const *argv[], const char* envp[]) {
 	if(argc < 2)
 		error("runs command as root\n"
-			  "no program given");
+			  "usage: rut <program> <args>");
 
 	if(!auth())
 		error("can not auth");
 
 	//set user_id to root's
 	if (setuid(0) != 0)
-    	error("can not set userid to root's: ");
+    	error("can not set userid to root's");
 
 	//execute, don't fork since it's the exitpoint anyway.
 	execvpe(argv[1], &argv[1], envp);
