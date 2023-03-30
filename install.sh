@@ -49,7 +49,7 @@ case $arg in
 esac
 done
 
-rutpath="rut"
+rutpath="/usr/bin/rut"
 cc -s $file -std=c17 -o $rutpath -lcrypt -O2
 chown root:root $rutpath
 chmod 4755 $rutpath
