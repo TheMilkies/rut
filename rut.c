@@ -21,7 +21,7 @@ struct auth_user {
 void error(const char* error) {
 	fprintf(stderr, "rut: %s", error);
 	if(errno)
-		fprintf(stderr, ": ", strerror(errno));
+		fprintf(stderr, ": %s", strerror(errno));
 
 	fprintf(stderr, "\n");
 	exit(1);
