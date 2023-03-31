@@ -9,6 +9,7 @@ Here are some advantages and disadvantages it has over other programs:
 - ✅ A LOT faster since it doesn't parse any file.
 - ✅ Doesn't have any dependencies (like yacc (ahem doas)).
 - ✅ Harder to exploit.
+- ❌ Doesn't support program-specific settings.
 - ❌ Doesn't have a configuration file.
 - ✅ Doesn't have a 120 line basic configuration file.
 - ❌ Requires recompilation on config update.
@@ -28,7 +29,7 @@ If only one user can have root permissions (typical for a modern desktop), this 
 
 The command should look something like this:
 
-	`./install.sh aquarius nopass`
+	./install.sh aquarius nopass
 
 ### Multi user config
 Configure it as you'd like, edit the `users.conf` file:
@@ -50,7 +51,10 @@ Run the following command as shown:
 rut whoami
 ```
 
-If it outputted "`root`", congratulations! you have rut installed!
+If it outputted "`root`", congratulations! you have rut installed! I recommend also making a softlink to doas so it'd be compatible with programs that require doas or sudo, only run this if you don't have doas installed:
+```
+rut ln -s /usr/bin/rut /usr/bin/doas
+```
 
 ## Credits
 - Yogurt: Original developer.
