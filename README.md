@@ -1,5 +1,5 @@
 # Rut
-Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 84 lines of C code) which makes it a lot faster and more secure than sudo.
+Rut is a simple one-file sudo-like utility. It was originally from [CowNotGNU](https://github.com/CowNotGNU/CoreUtils) but we realized we should also have a hardcoded version. Rut is smol (at 86 lines of C code) which makes it a lot faster and more secure than sudo.
 
 Since it's hardcoded, you'll need to recompile it every time you edit the configuration file.
 
@@ -29,7 +29,7 @@ If only one user can have root permissions (typical for a modern desktop), this 
 
 The command should look something like this:
 
-	./install.sh aquarius nopass
+	./install.sh single aquarius nopass
 
 ### Multi user config
 Configure it as you'd like, edit the `users.conf` file:

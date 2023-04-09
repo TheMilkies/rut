@@ -71,6 +71,7 @@ int main(int argc, char const *argv[], const char* envp[]) {
     	error("can not set userid to root's");
 
 	//execute, don't fork since it's the exitpoint anyway.
-	execvpe(argv[1], &argv[1], envp);
-	return 0;
+	if(execvpe(argv[1], &argv[1], envp) != 0)
+		fprintf(stderr, "%s: command not found.\n", argv[1]);
+	return 1; // exit with an error if the exec was not successful,
 }
