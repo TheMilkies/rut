@@ -58,7 +58,7 @@ bool auth() {
 	return false; //if user is not the defined user
 }
 
-int main(int argc, char const *argv[], const char* envp[]) {
+int main(int argc, char const *argv[]) {
 	if(argc < 2)
 		error("runs command as root (single user mode)\n"
 			  "usage: rut <program> <args>");
@@ -71,7 +71,7 @@ int main(int argc, char const *argv[], const char* envp[]) {
     	error("can not set userid to root's");
 
 	//execute, don't fork since it's the exitpoint anyway.
-	if(execvpe(argv[1], &argv[1], envp) != 0)
+	if(execvp(argv[1], &argv[1]) != 0)
 		fprintf(stderr, "%s: command not found.\n", argv[1]);
 	return 1; // exit with an error if the exec was not successful,
 }

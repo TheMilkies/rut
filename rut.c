@@ -1,5 +1,4 @@
 #define _XOPEN_SOURCE // for get_pass
-#define _GNU_SOURCE // for execvpe
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,7 +52,7 @@ bool auth() {
 	if(user_data == NULL)
 		error("can not get data");
 
-	size_t user_count = sizeof(rutters) / sizeof(struct auth_user);
+	static size_t user_count = sizeof(rutters) / sizeof(struct auth_user);
 	for (size_t i = 0; i < user_count; ++i) {
 		struct auth_user* rutter = &rutters[i];
 		//compare the name
@@ -67,7 +66,7 @@ bool auth() {
 	return false; //if user was not found
 }
 
-int main(int argc, char const *argv[], const char* envp[]) {
+int main(int argc, char const *argv[]) {
 	if(argc < 2)
 		error("runs command as root\n"
 			  "usage: rut <program> <args>");
@@ -80,7 +79,7 @@ int main(int argc, char const *argv[], const char* envp[]) {
     	error("can not set userid to root's");
 
 	//execute, don't fork since it's the exitpoint anyway.
-	if(execvpe(argv[1], &argv[1], envp) != 0)
+	if(execvp(argv[1], &argv[1]) != 0)
 		fprintf(stderr, "%s: command not found.\n", argv[1]);
 	return 1; // exit with an error if the exec was not successful,
 }
